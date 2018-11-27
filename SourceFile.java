@@ -9,7 +9,7 @@ public class sourceCode{
     
         
     for(int i =0; i<11;i++){
-        array[i] = array[i] + 3;
+        array[i] = array[i] + adder;
         System.out.println(array[i]);
     }
     
