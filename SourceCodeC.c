@@ -12,7 +12,6 @@ int main()
     for(i;i<11;i++){
         
         array[i] = array[i] + adder;
-        printf("%d/n", array[i]);
     }
 
     return 0;
