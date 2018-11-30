@@ -1,0 +1,61 @@
+FileAST: 
+  FuncDef: 
+    Decl: main, [], [], []
+      FuncDecl: 
+        ParamList: 
+          Typename: None, []
+            TypeDecl: None, []
+              IdentifierType: ['void']
+        TypeDecl: main, []
+          IdentifierType: ['int']
+    Compound: 
+      Decl: a, [], [], []
+        TypeDecl: a, []
+          IdentifierType: ['int']
+        Constant: int, 11
+      Decl: b, [], [], []
+        TypeDecl: b, []
+          IdentifierType: ['int']
+        Constant: int, 6
+      Decl: c, [], [], []
+        TypeDecl: c, []
+          IdentifierType: ['int']
+      Assignment: =
+        ID: c
+        FuncCall: 
+          ID: minFunction
+          ExprList: 
+            ID: a
+            ID: b
+      Return: 
+        Constant: int, 0
+  FuncDef: 
+    Decl: minFunction, [], [], []
+      FuncDecl: 
+        ParamList: 
+          Decl: n1, [], [], []
+            TypeDecl: n1, []
+              IdentifierType: ['int']
+          Decl: n2, [], [], []
+            TypeDecl: n2, []
+              IdentifierType: ['int']
+        TypeDecl: minFunction, []
+          IdentifierType: ['int']
+    Compound: 
+      Decl: min, [], [], []
+        TypeDecl: min, []
+          IdentifierType: ['int']
+      If: 
+        BinaryOp: >
+          ID: n1
+          ID: n2
+        Compound:
+          Assignment: =
+            ID: min
+            ID: n2
+        Compound: 
+          Assignment: =
+            ID: min
+            ID: n1
+      Return: 
+        ID: min
