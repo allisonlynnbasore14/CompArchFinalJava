@@ -24,7 +24,7 @@ class CGenerator(object):
         return ' ' * self.indent_level
 
     def visit(self, node):
-        print('testt')
+        print("name?", node.__class__.__name__)
         method = 'visit_' + node.__class__.__name__
         return getattr(self, method, self.generic_visit)(node)
 
@@ -193,7 +193,7 @@ class CGenerator(object):
 
     def visit_Return(self, n):
         s = 'return'
-        if n.expr: s += ' ' + self.visit(n.expr)
+        if n.expr: s += ' ' + str(self.visit(n.expr))
         return s + ';'
 
     def visit_Break(self, n):
