@@ -49,7 +49,7 @@ def parseTreeStart(tree):
 	#Levels 1-8 Func are constant across all parsing
 
 	#Level 8 Func
-	newIdentType2 = c_ast.IdentifierType(['void'])
+	newIdentType2 = c_ast.IdentifierType(['int argc,char *argv[]'])
 
 	#Level 7 Func
 	newTypeDecl2 = c_ast.TypeDecl(None,[],newIdentType2)
