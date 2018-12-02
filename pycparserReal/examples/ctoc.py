@@ -15,7 +15,7 @@ import sys
 #
 sys.path.extend(['.', '..'])
 
-from pycparser import parse_file, c_parser, c_generator
+from pycparser import parse_file, c_parser, c_generator, c_ast
 
 
 def translate_to_c(Newast):
@@ -24,43 +24,44 @@ def translate_to_c(Newast):
     ast = parse_file('exampleMin.c', use_cpp=True)
 
     ast.show()
-    Newast.show()
+    #print("newast: ", Newast.ext[0].decl.type.args.params[0].type.type==ast.ext[0].decl.type.args.params[0].type.type)
+    #print("newast2: ", Newast.ext[0].decl.type.args.params[0].type.type.coord)
+    #print("ast2: ", ast.ext[0].decl.type.args.params[0].type.type.coord)
 
-    # print(ast.coord)
-    # print(Newast.coord)
+    #Newast.show()
+    
+    # print(ast.ext[0].decl.bitsize)
+    # print(Newast.ext[0].decl.bitsize)
     # print("----------------------------------")
-    # print(ast.ext[0].coord)
-    # print(Newast.ext[0].coord)
+    # print(ast.ext[0].decl.type.args.coord)
+    # print(Newast.ext[0].decl.type.args.coord)
     # print("----------------------------------")
-    # print(ast.ext[0].decl.coord)
-    # print(Newast.ext[0].decl.coord)
+    # print(ast.ext[0].decl.type.args.params)
+    # print(Newast.ext[0].decl.type.args.params)
     # print("----------------------------------")
-    print(ast.ext[0].decl.bitsize)
-    print(Newast.ext[0].decl.bitsize)
-    print("----------------------------------")
-    print(ast.ext[0].decl.type.args.coord)
-    print(Newast.ext[0].decl.type.args.coord)
-    print("----------------------------------")
-    print(ast.ext[0].decl.type.args.params)
-    print(Newast.ext[0].decl.type.args.params)
-    print("----------------------------------")
-    print(ast.ext[0].decl.type.args.params[0].coord)
-    print(Newast.ext[0].decl.type.args.params[0].coord)
-    print("----------------------------------")
-    print(ast.ext[0].decl.type.args.params[0].type.coord)
-    print(Newast.ext[0].decl.type.args.params[0].type.coord)
-    print("----------------------------------")
-    print(ast.ext[0].decl.type.args.params[0].type.type.coord)
-    print(Newast.ext[0].decl.type.args.params[0].type.type.coord)
-    print("----------------------------------")
-    print(ast.ext[0].decl.type.args.params[0].type.type.names)
-    print(Newast.ext[0].decl.type.args.params[0].type.type.names)
-    print("----------------------------------")
+    # print(ast.ext[0].decl.type.args.params[0])
+    # print(Newast.ext[0].decl.type.args.params[0])
+    # print("----------------------------------")
+    # print(ast.ext[0].decl.type.args.params[0].type)
+    # print(Newast.ext[0].decl.type.args.params[0].type)
+    # print("----------------------------------")
+    # print(ast.ext[0].decl.type.args.params[0].type.type)
+    # print(Newast.ext[0].decl.type.args.params[0].type.type)
+    # print("----------------------------------")
+    # print(ast.ext[0].decl.type.args.params[0].type.type.names)
+    # print(Newast.ext[0].decl.type.args.params[0].type.type.names)
+    # print("----------------------------------")
 
     generator = c_generator.CGenerator()
     #ast.show()
 
-    print(generator.visit(ast))
+      # tracing the generator for debugging
+    # import trace
+    # tr = trace.Trace(countcallers=1)
+    # tr.runfunc(generator.visit, Newast)
+    # tr.results().write_results()
+
+    print(generator.visit(Newast))
 
 
 #------------------------------------------------------------------------------
