@@ -6,9 +6,8 @@ import plyj.model as m
 
 def parseTreeStart(tree):
 
-	VarValueList = []
-	VarTypeList = []
-	VarNameList = []
+	#List of tuples with each element has a value, a type, a name, a structType (literal, addivitive, etc.), opperation type, lhs, and rhs
+	VariableList = []
 
 	if tree is not None:
 
@@ -16,27 +15,46 @@ def parseTreeStart(tree):
 			for methodDecl in [decl for decl in tD.body if type(decl) is m.MethodDeclaration]:
 				if methodDecl.body is not None:
 					for statement in methodDecl.body:
-						VarTypeList.append(statement.type)
+						#VarTypeList.append(statement.type)
+						nodeType = statement.type
 						if type(statement) is m.VariableDeclaration:
 							for var_decl in statement.variable_declarators:
-								#print(var_decl.initializer)
-								VarValueList.append(var_decl.initializer.value)
-								VarNameList.append(var_decl.variable.name)
-
-								if type(statement.type) is str:
-									type_name = statement.type
+								#If not an opperation
+								if type(var_decl.initializer) is m.Literal:
+									VariableList.append((var_decl.initializer.value, nodeType, var_decl.variable.name, type(var_decl.initializer), None, None, None )) #The last three are None because there is no operation information to pass on 
+								#If an operation
 								else:
-									type_name = statement.type.name.value
+									opp = var_decl.initializer.operator
+									lhs = var_decl.initializer.lhs
+									rhs = var_decl.initializer.rhs
+									VariableList.append((None, nodeType, var_decl.variable.name, type(var_decl.initializer), opp, lhs.value, rhs.value ))
 
 
 	compoundList = []
 
-	for i in range(len(VarNameList)):
+	for i in range(len(VariableList)):
 
-		ConstantComp = c_ast.Constant(VarTypeList[i], VarValueList[i])
-		IdentTypeComp = c_ast.IdentifierType([VarTypeList[i]])
-		TypeDeclComp = c_ast.TypeDecl(VarNameList[i], [], IdentTypeComp)
-		DeclComp = c_ast.Decl(VarNameList[i], [], [], [], TypeDeclComp, ConstantComp, None )
+		tupleTarget = VariableList[i]
+		value = tupleTarget[0]
+		typeT = tupleTarget[1]
+		name = tupleTarget[2]
+		strType = tupleTarget[3]
+		opType = tupleTarget[4]
+		lhs = tupleTarget[5]
+		rhs = tupleTarget[6]
+
+		ConstantComp = c_ast.Constant([typeT], value)
+
+		IdentTypeComp = c_ast.IdentifierType([typeT])
+		TypeDeclComp = c_ast.TypeDecl(name, [], IdentTypeComp)
+		if opType is not None:
+			ID1 = c_ast.ID(lhs, None)
+			ID2 = c_ast.ID(rhs, None)
+			BinaryOp = c_ast.BinaryOp(opType, ID1, ID2, None)
+			DeclComp = c_ast.Decl(name, [], [], [], TypeDeclComp, BinaryOp, None )
+		else:
+			DeclComp = c_ast.Decl(name, [], [], [], TypeDeclComp, ConstantComp, None )
+
 		compoundList.append(DeclComp)
 
 	ConstantRComp = c_ast.Constant('int', 0)
@@ -75,7 +93,7 @@ def parseTreeStart(tree):
 	#Level 1 Func
 	newTree = c_ast.FileAST([newFunc],None)
 
-	newTree.show(attrnames=True, nodenames=True, showcoord=True)
+
 	print("--------------------------")
 
 	return newTree
