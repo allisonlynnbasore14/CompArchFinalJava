@@ -143,7 +143,7 @@ We heavily used plyj to convert Java code into an AST. \href{https://github.com/
 
 Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU.
 
-<ALLISON WILL FINISH>
+ALLISON WILL FINISH
 
 ## Sources
 
