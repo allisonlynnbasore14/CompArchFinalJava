@@ -19,7 +19,6 @@ The three stages of compilation are parsing, transformation, and code generation
 
 Parsing is the process of converting files of a certain type to a tokenized Abstract Syntax Tree. An abstract Syntax tree is simply a tree data structure that nests elements of the code using keyword tokens as branches. The important part here is that the essence and meaning of the code must be reflected in the syntax tree. No information can be lost when parsing. This is where Lexical Analysis comes in. Lexical Analysis converts the important information to a series of tokens. Tokens can be keywords taken from the code, operation signs, numerical constants, or even variable names. Tokens vary from parser to parser and often are written with the overall compiler design in mind. An example tokenization is given below:
 
-\begin{lstlisting}
 // Java Code
 while(x > i){
     p = p +1;
@@ -29,7 +28,6 @@ while(x > i){
 WHILE, <ID,1>, GREATERTHAN, <UD,2>
 <ID, 3>, EQUAL, <ID, 3>, (CONST,1)
 
-\end{lstlisting}
 
 INSERT EXPLANATION OF ID
 
@@ -44,7 +42,6 @@ Once lexical analysis has been able to identify and group code pieces, the secon
 Programming languages, like natural languages, have grammar. Even through programming languages are significantly more systematic they still require careful parsing of syntax rules that interpret meaning. For example, in the case of Java, a simple for each loop versus a regular for loop:
 
 
-\begin{lstlisting}
 // Java for each loop
 for(obj: setOfObjects){
     System.out.println(obj.name);
@@ -54,31 +51,22 @@ for(int i = 0; i<N;i++){
     System.out.println(setOfObjects[i].name);
 }
 
-\end{lstlisting}
 
 Here you have the same for loop key word, but the rest of the syntax is different and produce very different objects for the same end desired result. In the study of parsers, in an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
 
-\begin{figure}[t]
-\includegraphics[width=1.0\textwidth]{grams.jpg}
-\caption{A representation of Chomsky Hierarchy. Level 3/4 is the in most circle while level 1 is the out most.}
-\label{fig:jobInformationDialog}
-\end{figure}
+INSERT grams.jpg RIGHT HERE
 
 The content of rules and particulars of each of these grammar types in the hierarchy is extensive but, even though they are extremely interesting, they are beyond the scope of this paper.
 
 Parsing techniques like \textit{Recursive Descent Parsing} use grammar rules to trigger certain recursive paths.
 
 In terms of language, you can say that tokens are like the alphabet of programming, the grammar is the syntax, and code can be formed by joining the alphabet according to the grammar rules. For example, in English the sentence "I have a dog named Roger." Makes sense because it have the proper word types in the proper order. Similarly,
-\begin{lstlisting}
 for(int i = 0; i< 10;i++){
 }
-\end{lstlisting}
 makes sense because the proper data types are in the correct order. Neither "Dog named Roger I have" or
-\begin{lstlisting}
 // Original Code
 int i; ++; for = 0{}
-\end{lstlisting}
-make any sense. The point of the parser is to convert the "sense making" to another language.\footnote{If you know a different language you are just a human compiler}
+make any sense. The point of the parser is to convert the "sense making" to another language.(If you know a different language you are just a human compiler)
 
 Overall, there is plenty of room for efficiency optimization in parsing. Since the tokenizing process must touch every character of the code, the programmer must be careful to not let this piece of code's run time get out of hand. In addition, there are many structures and techniques that have been tried and tested to work to varying levels of efficiency. In terms of optimization for compiling to machine code, there is not much to say for parsing. No matter the target language, the parsing of the source code is largely the same.
 
@@ -87,7 +75,6 @@ Overall, there is plenty of room for efficiency optimization in parsing. Since t
 Transformation is the adapting or creation of a new AST tree to suit the target language code generation. Here much of the code optimization and compiler optimization opportunities arise. We can make any changes desired during the transformation as long as the original intention of the source code is met. Here many of the rules of traditional computer science falls apart as you tear down the code in the source language. For example, as a coder you know that you should use variables for readability. Since this makes the code considerably longer, the transformer might cut all the variables and use their values instead in one glob of code:
 
 
-\begin{lstlisting}
 // Original Code
 int a = 100;
 int b = 0.5;
@@ -95,7 +82,6 @@ int c = 23;
 int output = (a*b)+c*(a/b);
 // Transformed Code
 int output = (100*0.5)+23*(100/0.5)
-\end{lstlisting}
 
 Many of transformation optimization techniques are looking for ways to make code shorter. The optimization section of this report dives into the many ways to optimize code during transformation.
 
