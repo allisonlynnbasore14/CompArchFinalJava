@@ -18,9 +18,10 @@ def parseTreeStart(tree):
 				if methodDecl.body is not None:
 					for statement in methodDecl.body:
 						#VarTypeList.append(statement.type)
+						if type(statement) is m.ExpressionStatement:
+							print("Found Other Function")
 						
-						print("------------------")
-						if type(statement) is m.For:
+						elif type(statement) is m.For:
 							print(statement.update)
 							Forloops.append((statement.init[0].operator, statement.init[0].lhs.value, statement.init[0].rhs.value, statement.predicate.operator, statement.predicate.lhs.value, statement.predicate.rhs.value,statement.update[0].sign, statement.update[0].expression.value,statement.body.statements[0].expression.operator,statement.body.statements[0].expression.lhs.value,statement.body.statements[0].expression.rhs.operator,statement.body.statements[0].expression.rhs.lhs.value,statement.body.statements[0].expression.rhs.rhs.value))
 						else:
