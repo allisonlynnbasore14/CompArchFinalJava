@@ -18,8 +18,6 @@ The three stages of compilation are parsing, transformation, and code generation
 
 ### Parsing
 
-**Parsing**
-
 Parsing is the process of converting files of a certain type to a tokenized Abstract Syntax Tree. An abstract Syntax tree is simply a tree data structure that nests elements of the code using keyword tokens as branches. The important part here is that the essence and meaning of the code must be reflected in the syntax tree. No information can be lost when parsing. This is where Lexical Analysis comes in. Lexical Analysis converts the important information to a series of tokens. Tokens can be keywords taken from the code, operation signs, numerical constants, or even variable names. Tokens vary from parser to parser and often are written with the overall compiler design in mind. An example tokenization is given below:
 
 ```
@@ -156,8 +154,8 @@ ALLISON WILL FINISH
 
 ## Sources
 
-https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf
+[https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf](https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf)
 
-https://www.youtube.com/watch?v=Tar4WgAfMr4
+[https://www.youtube.com/watch?v=Tar4WgAfMr4]([https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf])
 
-https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques
+[https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques]([https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf])
