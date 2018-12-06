@@ -14,6 +14,7 @@ The three stages of compilation are parsing, transformation, and code generation
 
 INSERT OVERVIEW FIGURE
 
+### Parsing
 
 **Parsing**
 
