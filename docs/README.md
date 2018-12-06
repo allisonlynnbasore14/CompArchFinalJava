@@ -12,7 +12,7 @@ As we learned this semester, assembly code serves as a mapping of binary CPU ope
 
 The three stages of compilation are parsing, transformation, and code generation. Parsing is taking code and translating it into a more abstract representation of that same code. Transformation involves using the abstract representation of code from one language and making the necessary transformations and optimization to move it into a lower level programming language. Finally, code generation takes the transformed representation of the code and translates it into a new string of code in the target programming language.
 
-<INSERT OVERVIEW FIGURE>
+INSERT OVERVIEW FIGURE
 
 
 ### Parsing
@@ -35,7 +35,7 @@ This process can be broken down into two parts: scanning the code, grouping the 
 
 One approach is making a scanner and analyzer is to have a series of states that identify the meaning of a piece of code. For example, when scanning, you might be in a \textit{commentIgnore}. For analyzing you might be in a \textit{WhileStatement} state. These may be tokens themselves or simple states of the code to be used for organization of the AST. These states can be as high level as \textit{MainFunc} state or as low level as \textit{minusSign} state. An organization of the states is often presented as a table where states are crossed with the current characters being considered make up the rows. For example, if you were in the for loop state your next input tokens would be: BEGPARAN, (CONST, a), LESSTHAN, (CONST, b), ENDPARAN and your input characters would be ( a < b ). The for token would be what sets the code into the for loop state.
 
-<INSERT MORE APPROACHES>
+INSERT MORE APPROACHES
 
 Once lexical analysis has been able to identify and group code pieces, the second phase of parsing beings where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like \textit{Recursive Descent Parsing} are simple yet requires backtracking. Others are more complicated but are able to generate a tree with a single pass through.
 
@@ -91,8 +91,8 @@ Mechanically, transformation works by parsing the source code's AST and simultan
 
 In large part, code generation is follows the same rules and processes of parsing but inverted. Additional rules must be used to allow for optimized use of the target language. For example, with machine language, you have to decide which registers to use and when. For every leaf of the AST, we need to decide what is corresponds to in the target language, what register/memory allocation is needed, and where to put it in the final code.
 
-<INSERT ABOUT FLOW OVER WITH REGISTERS AND MEMEORY>
-<INSERT ABOUT HOW TO CHOOSE THE BEST REGISTER>
+INSERT ABOUT FLOW OVER WITH REGISTERS AND MEMEORY
+INSERT ABOUT HOW TO CHOOSE THE BEST REGISTER
 
 ## Optimization
 
