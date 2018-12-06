@@ -1,12 +1,12 @@
-## Compiler Optimization: A Study of the Pipeline from Programming Languages to Assembly
+# Compiler Optimization: A Study of the Pipeline from Programming Languages to Assembly
 
 With a interest in the processes surrounding executions of CPU instructions, we chose to investigate the transformation of programming languages to the basic instructions for CPU control. With research, we found ways to optimize code while compiling. Following this, we were able to investigate implementation of several optimization strategies. Via a combination of research and implementation, we have developed a deep understanding of the pipeline from high level programming languages to the binary commands that run a computer.
 
-### Overview
+## Overview
 
 First, we learned about the stages of compilation. We learned that a compiler is a tool that transforms source code from a higher level language to a generally lower level target language. Because we had 4 team members, we decided we would split the compilation process into a 2 step pipeline. The first compiler would transform code from Java to C and the second compiler would transform code from C to assembly. We also wanted to focus on the optimization step of compilation so we could see how the compiler works to make our code more efficient for our specific CPU architecture. We decided we would focus on the optimization step for our Java to C compiler because this compiler is higher level and thinking about the optimization at this level allows us to tie the work we are doing with this compiler into some of the things we learned about in computer architecture this semester.
 
-### Compilation
+## Compilation
 
 As we learned this semester, assembly code serves as a mapping of binary CPU operations that is more easily human readable. Assembly is a super low level programming language and is translated into binary by the assembler that is then fed to the CPU. C code is a level up from assembly and is generally much easier for programmers to read and write than assembly. Java is yet another level up from C as more is handled by the language behind the scenes making it even easier for programmers to read and write.
 
@@ -15,7 +15,7 @@ The three stages of compilation are parsing, transformation, and code generation
 <INSERT OVERVIEW FIGURE>
 
 
-#### Parsing
+### Parsing
 
 Parsing is the process of converting files of a certain type to a tokenized Abstract Syntax Tree. An abstract Syntax tree is simply a tree data structure that nests elements of the code using keyword tokens as branches. The important part here is that the essence and meaning of the code must be reflected in the syntax tree. No information can be lost when parsing. This is where Lexical Analysis comes in. Lexical Analysis converts the important information to a series of tokens. Tokens can be keywords taken from the code, operation signs, numerical constants, or even variable names. Tokens vary from parser to parser and often are written with the overall compiler design in mind. An example tokenization is given below:
 
@@ -70,7 +70,7 @@ make any sense. The point of the parser is to convert the "sense making" to anot
 
 Overall, there is plenty of room for efficiency optimization in parsing. Since the tokenizing process must touch every character of the code, the programmer must be careful to not let this piece of code's run time get out of hand. In addition, there are many structures and techniques that have been tried and tested to work to varying levels of efficiency. In terms of optimization for compiling to machine code, there is not much to say for parsing. No matter the target language, the parsing of the source code is largely the same.
 
-#### Transformation
+### Transformation
 
 Transformation is the adapting or creation of a new AST tree to suit the target language code generation. Here much of the code optimization and compiler optimization opportunities arise. We can make any changes desired during the transformation as long as the original intention of the source code is met. Here many of the rules of traditional computer science falls apart as you tear down the code in the source language. For example, as a coder you know that you should use variables for readability. Since this makes the code considerably longer, the transformer might cut all the variables and use their values instead in one glob of code:
 
@@ -87,14 +87,14 @@ Many of transformation optimization techniques are looking for ways to make code
 
 Mechanically, transformation works by parsing the source code's AST and simultaneously writing a new optimized tree formatted for the target language. For example, if your target language was MIPS machine language, a simplistic change might be to group sections of the code that run together and their jump conditionals under a certain token.
 
-#### Code Generation
+### Code Generation
 
 In large part, code generation is follows the same rules and processes of parsing but inverted. Additional rules must be used to allow for optimized use of the target language. For example, with machine language, you have to decide which registers to use and when. For every leaf of the AST, we need to decide what is corresponds to in the target language, what register/memory allocation is needed, and where to put it in the final code.
 
 <INSERT ABOUT FLOW OVER WITH REGISTERS AND MEMEORY>
 <INSERT ABOUT HOW TO CHOOSE THE BEST REGISTER>
 
-### Optimization
+## Optimization
 
 There are many different optimizations that can be included in the compilation process. The best compilers take advantage of both CPU specific and application specific optimizations when the compilation is done. In some cases, code that would not be as advisable to write from a proper programming standpoint would actually run more efficiently on a CPU. It is the compiler's job to find these types of cases and transform the code appropriately. In fact, compiler performance is the single most important variable affecting program performance.
 
@@ -128,23 +128,23 @@ One other optimization that compilers can perform that was particularly relevant
 Although we were not able to actually implement all or even most of these optimizations in our compiler, we were able to learn a lot about how compilers interact with the CPU and can make the code we write in higher level programming languages as efficient as possible.
 
 
-### Implementation
+## Implementation
 
 Coming into this project, we recognized that building a full scale compiler is neither within our time or understanding scope. Each step of the implementation had the opportunity to be a full scale 2-week project by itself. For the Java to C and the C to Assembly compiler, we understand how the steps that would be implemented would be made.
 
-#### Java to C Compiler
+### Java to C Compiler
 
 For our Java to C compiler, we decided we wanted to focus mostly on the transformation stage of compilation. We did not want to spend much time on parsing and code generation for two languages that are both higher level than we really learned about in computer architecture this semester. For this reason, we found Python libraries that were able to do these steps for us. One Python library performed parsing for us by taking the Java code and translating it into an abstract syntax tree. Another library was able to do code generation by taking a C abstract syntax tree and translating it into C code. We focused on the implementation for the transformation step. During this step, we took the Java abstract syntax tree and transformed it into a C abstract syntax tree. We also wanted to focus on adding some optimizations during this step so that our code would perform better when loaded onto a CPU. The main optimization that we implemented was function inlining. We did this by taking any functions in our Java code and inlining them into our main function in our new abstract syntax tree. Our compiler does not have any checks to ensure that doing this will not significantly increase the length of our code. In this way, we have made a tradeoff aiming for a faster run time and giving up any space in memory we may have saved by not copying over the function every time it is called.
 
 We heavily used plyj to convert Java code into an AST. \href{https://github.com/musiKk/plyj}{Plyj} is a
 
-#### C to Assembly Compiler
+### C to Assembly Compiler
 
 Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU.
 
 <ALLISON WILL FINISH>
 
-### Sources
+## Sources
 
 https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf
 
