@@ -20,15 +20,17 @@ INSERT OVERVIEW FIGURE
 
 Parsing is the process of converting files of a certain type to a tokenized Abstract Syntax Tree. An abstract Syntax tree is simply a tree data structure that nests elements of the code using keyword tokens as branches. The important part here is that the essence and meaning of the code must be reflected in the syntax tree. No information can be lost when parsing. This is where Lexical Analysis comes in. Lexical Analysis converts the important information to a series of tokens. Tokens can be keywords taken from the code, operation signs, numerical constants, or even variable names. Tokens vary from parser to parser and often are written with the overall compiler design in mind. An example tokenization is given below:
 
+```
 // Java Code
 while(x > i){
     p = p +1;
 }
-
+```
+```
 // Tokenization
 WHILE, <ID,1>, GREATERTHAN, <UD,2>
 <ID, 3>, EQUAL, <ID, 3>, (CONST,1)
-
+```
 
 INSERT EXPLANATION OF ID
 
@@ -42,15 +44,18 @@ Once lexical analysis has been able to identify and group code pieces, the secon
 
 Programming languages, like natural languages, have grammar. Even through programming languages are significantly more systematic they still require careful parsing of syntax rules that interpret meaning. For example, in the case of Java, a simple for each loop versus a regular for loop:
 
-
+```
 // Java for each loop
 for(obj: setOfObjects){
     System.out.println(obj.name);
 }
+```
+```
 //Java for loop
 for(int i = 0; i<N;i++){
     System.out.println(setOfObjects[i].name);
 }
+```
 
 
 Here you have the same for loop key word, but the rest of the syntax is different and produce very different objects for the same end desired result. In the study of parsers, in an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
@@ -62,11 +67,11 @@ The content of rules and particulars of each of these grammar types in the hiera
 Parsing techniques like \textit{Recursive Descent Parsing} use grammar rules to trigger certain recursive paths.
 
 In terms of language, you can say that tokens are like the alphabet of programming, the grammar is the syntax, and code can be formed by joining the alphabet according to the grammar rules. For example, in English the sentence "I have a dog named Roger." Makes sense because it have the proper word types in the proper order. Similarly,
-for(int i = 0; i< 10;i++){
-}
+`for(int i = 0; i< 10;i++){
+}`
 makes sense because the proper data types are in the correct order. Neither "Dog named Roger I have" or
-// Original Code
-int i; ++; for = 0{}
+`// Original Code
+int i; ++; for = 0{}`
 make any sense. The point of the parser is to convert the "sense making" to another language.(If you know a different language you are just a human compiler)
 
 Overall, there is plenty of room for efficiency optimization in parsing. Since the tokenizing process must touch every character of the code, the programmer must be careful to not let this piece of code's run time get out of hand. In addition, there are many structures and techniques that have been tried and tested to work to varying levels of efficiency. In terms of optimization for compiling to machine code, there is not much to say for parsing. No matter the target language, the parsing of the source code is largely the same.
@@ -75,7 +80,7 @@ Overall, there is plenty of room for efficiency optimization in parsing. Since t
 
 Transformation is the adapting or creation of a new AST tree to suit the target language code generation. Here much of the code optimization and compiler optimization opportunities arise. We can make any changes desired during the transformation as long as the original intention of the source code is met. Here many of the rules of traditional computer science falls apart as you tear down the code in the source language. For example, as a coder you know that you should use variables for readability. Since this makes the code considerably longer, the transformer might cut all the variables and use their values instead in one glob of code:
 
-
+```
 // Original Code
 int a = 100;
 int b = 0.5;
@@ -83,6 +88,7 @@ int c = 23;
 int output = (a*b)+c*(a/b);
 // Transformed Code
 int output = (100*0.5)+23*(100/0.5)
+```
 
 Many of transformation optimization techniques are looking for ways to make code shorter. The optimization section of this report dives into the many ways to optimize code during transformation.
 
@@ -105,23 +111,24 @@ Another optimization that some compilers might implement is profile driven optim
 
 Another possible optimization involves making all recursive functions tail recursive. In this optimization, the code is modified so that variables and values do not need to be stored between recursive calls. We can do this by storing all variables that we need between runs within the parameters for the function.
 
-%make this nice on website - not gonna waste too much time latexing it
 An example original recursive function:
+```
 def sumn(n):
 
     if (n == 0):
         return 1
 
     return n + sumn(n-1)
-
+```
 The same function after optimized with tail recursion:
+```
 def sumnTR(n, a):
 
     if (n == 0):
         return a
 
     return sumnTR(n - 1, n + a)
-
+```
 Another one of the more basic techniques for optimization during compilation is interprocedural analysis. The goal of this process is to minimize load and store operations by keeping as many variables as possible in registers. One way to do this is to examine the code when a function is called and move subexpressions that are calculated inside a loop (and that do not change each time through) out of the loop so that they are only calculated and stored once. Another thing that can be done is to be sure to only save registers that are actually used by the function in question.
 
 One other optimization that compilers can perform that was particularly relevant to us in our understanding of computer architecture was instruction scheduling. This optimization happens after all other optimizations. It depends on both the instruction pipeline and how many instructions per cycle can be issued by the specific architecture. The main goal of an instruction scheduling optimization is to move things around such that we minimize the number of times an instruction is using an operand calculated by a load instruction immediately before it. This explains how the compiler is actually able to help our CPU avoid data hazards and minimize the need for forwarding.
