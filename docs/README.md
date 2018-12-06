@@ -6,13 +6,15 @@ With a interest in the processes surrounding executions of CPU instructions, we 
 
 First, we learned about the stages of compilation. We learned that a compiler is a tool that transforms source code from a higher level language to a generally lower level target language. Because we had 4 team members, we decided we would split the compilation process into a 2 step pipeline. The first compiler would transform code from Java to C and the second compiler would transform code from C to assembly. We also wanted to focus on the optimization step of compilation so we could see how the compiler works to make our code more efficient for our specific CPU architecture. We decided we would focus on the optimization step for our Java to C compiler because this compiler is higher level and thinking about the optimization at this level allows us to tie the work we are doing with this compiler into some of the things we learned about in computer architecture this semester.
 
+![What is a Compiler?](overview.png)
+
 ## Compilation
 
 As we learned this semester, assembly code serves as a mapping of binary CPU operations that is more easily human readable. Assembly is a super low level programming language and is translated into binary by the assembler that is then fed to the CPU. C code is a level up from assembly and is generally much easier for programmers to read and write than assembly. Java is yet another level up from C as more is handled by the language behind the scenes making it even easier for programmers to read and write.
 
 The three stages of compilation are parsing, transformation, and code generation. Parsing is taking code and translating it into a more abstract representation of that same code. Transformation involves using the abstract representation of code from one language and making the necessary transformations and optimization to move it into a lower level programming language. Finally, code generation takes the transformed representation of the code and translates it into a new string of code in the target programming language.
 
-INSERT OVERVIEW FIGURE
+![Compilation Overview](flow.png)
 
 ### Parsing
 
