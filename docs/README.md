@@ -55,7 +55,7 @@ for(int i = 0; i<N;i++){
 
 Here you have the same for loop key word, but the rest of the syntax is different and produce very different objects for the same end desired result. In the study of parsers, in an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
 
-INSERT grams.jpg RIGHT HERE
+![Grammar Rules](grams.jpg)
 
 The content of rules and particulars of each of these grammar types in the hierarchy is extensive but, even though they are extremely interesting, they are beyond the scope of this paper.
 
