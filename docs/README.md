@@ -12,7 +12,7 @@ First, we learned about the stages of compilation. We learned that a compiler is
 
 As we learned this semester, assembly code serves as a mapping of binary CPU operations that is more easily human readable. Assembly is a super low level programming language and is translated into binary by the assembler that is then fed to the CPU. C code is a level up from assembly and is generally much easier for programmers to read and write than assembly. Java is yet another level up from C as more is handled by the language behind the scenes making it even easier for programmers to read and write.
 
-The three stages of compilation are parsing, transformation, and code generation. Parsing is taking code and translating it into a more abstract representation of that same code. Transformation involves using the abstract representation of code from one language and making the necessary transformations and optimization to move it into a lower level programming language. Finally, code generation takes the transformed representation of the code and translates it into a new string of code in the target programming language.
+The three stages of compilation are parsing, transformation, and code generation. Parsing is taking code and translating it into a more abstract representation of that same code. Transformation involves using the abstract representation of code from one language and making the necessary transformations and optimizations to move it into a lower level programming language. Finally, code generation takes the transformed representation of the code and translates it into a new string of code in the target programming language.
 
 <div style="text-align:center"><img src ="flow.png" /></div>
 
@@ -28,19 +28,20 @@ while(x > i){
 ```
 ```
 // Tokenization
-WHILE, <ID,1>, GREATERTHAN, <UD,2>
+WHILE, <ID,1>, GREATERTHAN, <ID,2>
 <ID, 3>, EQUAL, <ID, 3>, (CONST,1)
 ```
 
-INSERT EXPLANATION OF ID
+In the above tokenization example the ID sections represent variables in the original code that are referred to and explained elsewhere in the abstract syntax tree. For example, `<ID,1>` refers to the first variable in the code, x.
 
-This process can be broken down into two parts: scanning the code, grouping the token based on the code content. Scanning largely consists of ignoring comments and removing white space, essentially stripping the code down to the key information. Next the analyzer finds groups of tokens and their children values.
+This process can be broken down into two parts: scanning the code and grouping the token based on the code content. Scanning largely consists of ignoring comments and removing white space, essentially stripping the code down to the key information. Next the analyzer finds groups of tokens and their children values.
 
-One approach is making a scanner and analyzer is to have a series of states that identify the meaning of a piece of code. For example, when scanning, you might be in a \textit{commentIgnore}. For analyzing you might be in a \textit{WhileStatement} state. These may be tokens themselves or simple states of the code to be used for organization of the AST. These states can be as high level as \textit{MainFunc} state or as low level as \textit{minusSign} state. An organization of the states is often presented as a table where states are crossed with the current characters being considered make up the rows. For example, if you were in the for loop state your next input tokens would be: BEGPARAN, (CONST, a), LESSTHAN, (CONST, b), ENDPARAN and your input characters would be ( a < b ). The for token would be what sets the code into the for loop state.
+TODO (Vicky?) - Fix this paragraph
+One approach is making a scanner and analyzer is to have a series of states that identify the meaning of a piece of code similar to the finite state machines we learned about this semester. For example, when scanning, you might be in a \textit{commentIgnore} state. For analyzing you might be in a \textit{WhileStatement} state. These may be tokens themselves or simple states of the code to be used for organization of the AST. These states can be as high level as \textit{MainFunc} state or as low level as \textit{minusSign} state. (An organization of the states is often presented as a table where states are crossed with the current characters being considered make up the rows -> This sentence makes no sense - NEED TO FIX). For example, if you were in the for loop state your next input tokens would be: BEGPARAN, (CONST, a), LESSTHAN, (CONST, b), ENDPARAN and your input characters would be ( a < b ). The for token would be what sets the code into the for loop state.
 
 INSERT MORE APPROACHES
 
-Once lexical analysis has been able to identify and group code pieces, the second phase of parsing beings where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like \textit{Recursive Descent Parsing} are simple yet requires backtracking. Others are more complicated but are able to generate a tree with a single pass through.
+Once lexical analysis has been able to identify and group code pieces, the second phase of parsing beings where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like \textit{Recursive Descent Parsing} are simple yet require backtracking. Others are more complicated but are able to generate a tree with a single pass through.
 
 Programming languages, like natural languages, have grammar. Even through programming languages are significantly more systematic they still require careful parsing of syntax rules that interpret meaning. For example, in the case of Java, a simple for each loop versus a regular for loop:
 
@@ -58,7 +59,7 @@ for(int i = 0; i<N;i++){
 ```
 
 
-Here you have the same for loop key word, but the rest of the syntax is different and produce very different objects for the same end desired result. In the study of parsers, in an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
+Here you have the same for loop key word, but the rest of the syntax is different and produces very different objects for the same end desired result. In an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
 
 <div style="text-align:center"><img src ="grams.jpg" /></div>
 
@@ -66,19 +67,19 @@ The content of rules and particulars of each of these grammar types in the hiera
 
 Parsing techniques like \textit{Recursive Descent Parsing} use grammar rules to trigger certain recursive paths.
 
-In terms of language, you can say that tokens are like the alphabet of programming, the grammar is the syntax, and code can be formed by joining the alphabet according to the grammar rules. For example, in English the sentence "I have a dog named Roger." Makes sense because it have the proper word types in the proper order. Similarly,
+In terms of language, you can say that tokens are like the alphabet of programming, the grammar is the syntax, and code can be formed by joining the alphabet according to the grammar rules. For example, in English the sentence "I have a dog named Roger." Makes sense because it has the proper word types in the proper order. Similarly,
 `for(int i = 0; i< 10;i++){
 }`
-makes sense because the proper data types are in the correct order. Neither "Dog named Roger I have" or
+makes sense because the proper data types are in the correct order. Neither "Dog named Roger I have" nor
 `// Original Code
 int i; ++; for = 0{}`
 make any sense. The point of the parser is to convert the "sense making" to another language.(If you know a different language you are just a human compiler)
 
-Overall, there is plenty of room for efficiency optimization in parsing. Since the tokenizing process must touch every character of the code, the programmer must be careful to not let this piece of code's run time get out of hand. In addition, there are many structures and techniques that have been tried and tested to work to varying levels of efficiency. In terms of optimization for compiling to machine code, there is not much to say for parsing. No matter the target language, the parsing of the source code is largely the same.
+Overall, there is plenty of room for efficiency optimization in parsing. Since the tokenizing process must touch every character of the code, the programmer must be careful to not let this piece of code's runtime get out of hand. In addition, there are many structures and techniques that have been tried and tested to work to varying levels of efficiency. In terms of optimization for compiling to machine code, there is not much to say for parsing. No matter the target language, the parsing of the source code is largely the same.
 
 ### Transformation
 
-Transformation is the adapting or creation of a new AST tree to suit the target language code generation. Here much of the code optimization and compiler optimization opportunities arise. We can make any changes desired during the transformation as long as the original intention of the source code is met. Here many of the rules of traditional computer science falls apart as you tear down the code in the source language. For example, as a coder you know that you should use variables for readability. Since this makes the code considerably longer, the transformer might cut all the variables and use their values instead in one glob of code:
+Transformation is the adapting or creation of a new AST tree to suit the target language code generation. Here much of the code optimization and compiler optimization opportunities arise. We can make any changes desired during the transformation as long as the original intention of the source code is met. Here many of the rules of traditional computer science fall apart as you tear down the code in the source language. For example, as a coder you know that you should use variables for readability. Since this makes the code considerably longer, the transformer might cut all the variables and use their values instead in one glob of code:
 
 ```
 // Original Code
@@ -90,7 +91,7 @@ int output = (a*b)+c*(a/b);
 int output = (100*0.5)+23*(100/0.5)
 ```
 
-Many of transformation optimization techniques are looking for ways to make code shorter. The optimization section of this report dives into the many ways to optimize code during transformation.
+Many of transformation optimization techniques are looking for ways to make code run more efficiently. The optimization section of this report dives into the many ways to optimize code during transformation.
 
 Mechanically, transformation works by parsing the source code's AST and simultaneously writing a new optimized tree formatted for the target language. For example, if your target language was MIPS machine language, a simplistic change might be to group sections of the code that run together and their jump conditionals under a certain token.
 
@@ -98,8 +99,7 @@ Mechanically, transformation works by parsing the source code's AST and simultan
 
 In large part, code generation is follows the same rules and processes of parsing but inverted. Additional rules must be used to allow for optimized use of the target language. For example, with machine language, you have to decide which registers to use and when. For every leaf of the AST, we need to decide what is corresponds to in the target language, what register/memory allocation is needed, and where to put it in the final code.
 
-INSERT ABOUT FLOW OVER WITH REGISTERS AND MEMEORY
-INSERT ABOUT HOW TO CHOOSE THE BEST REGISTER
+During code generation, the compiler iterates over every element in the transformed abstract syntax tree and converts it into code in the target programming language. The output at the end of code generation is a string of (ideally optimized) code written in the target programming language.
 
 ## Optimization
 
@@ -133,26 +133,25 @@ Another one of the more basic techniques for optimization during compilation is 
 
 One other optimization that compilers can perform that was particularly relevant to us in our understanding of computer architecture was instruction scheduling. This optimization happens after all other optimizations. It depends on both the instruction pipeline and how many instructions per cycle can be issued by the specific architecture. The main goal of an instruction scheduling optimization is to move things around such that we minimize the number of times an instruction is using an operand calculated by a load instruction immediately before it. This explains how the compiler is actually able to help our CPU avoid data hazards and minimize the need for forwarding.
 
-In theory, with all optimization technique implemented, we could make the computer work in parallel with hardware designed for serial computation. However, there are significant limitations. For loop unrolling, the number of iteration must be known before the loop is entered and this is not all possible cases. 
+In theory, with all optimization techniques implemented, we could make the computer work in parallel with hardware designed for serial computation. However, there are significant limitations. For loop unrolling, the number of iterations must be known before the loop is entered and this is not possible in all cases. 
 
 Although we were not able to actually implement all or even most of these optimizations in our compiler, we were able to learn a lot about how compilers interact with the CPU and can make the code we write in higher level programming languages as efficient as possible.
 
 
 ## Implementation
 
-Coming into this project, we recognized that building a full scale compiler is neither within our time or understanding scope. Each step of the implementation had the opportunity to be a full scale 2-week project by itself. For the Java to C and the C to Assembly compiler, we understand how the steps that would be implemented would be made.
+Coming into this project, we recognized that building 2 full scale compilers was not going to be possible within the small amount of time we had. Each step of the implementation had the opportunity to be a full scale 2-week project by itself. For the Java to C and the C to Assembly compiler, we were able to mock up our own compilers with some basic optimizations while making heavy use of the PLY python library to help us with the parsing and code generation steps.
 
 ### Java to C Compiler
 
-For our Java to C compiler, we decided we wanted to focus mostly on the transformation stage of compilation. We did not want to spend much time on parsing and code generation for two languages that are both higher level than we really learned about in computer architecture this semester. For this reason, we found Python libraries that were able to do these steps for us. One Python library performed parsing for us by taking the Java code and translating it into an abstract syntax tree. Another library was able to do code generation by taking a C abstract syntax tree and translating it into C code. We focused on the implementation for the transformation step. During this step, we took the Java abstract syntax tree and transformed it into a C abstract syntax tree. We also wanted to focus on adding some optimizations during this step so that our code would perform better when loaded onto a CPU. The main optimization that we implemented was function inlining. We did this by taking any functions in our Java code and inlining them into our main function in our new abstract syntax tree. Our compiler does not have any checks to ensure that doing this will not significantly increase the length of our code. In this way, we have made a tradeoff aiming for a faster run time and giving up any space in memory we may have saved by not copying over the function every time it is called.
+For our Java to C compiler, we decided we wanted to focus mostly on the transformation stage of compilation. We did not want to spend much time on parsing and code generation for two languages that are both higher level than we really learned about in computer architecture this semester. For this reason, we found Python libraries that were able to do these steps for us. One Python library performed parsing for us by taking the Java code and translating it into an abstract syntax tree. Another library was able to do code generation by taking a C abstract syntax tree and translating it into C code. We focused on the implementation for the transformation step. During this step, we took the Java abstract syntax tree and transformed it into a C abstract syntax tree. We also wanted to focus on adding some optimizations during this step so that our code would perform better when loaded onto a CPU. The main optimization that we implemented was function inlining. We did this by taking any functions in our Java code and inlining them into our main function in our new abstract syntax tree. Our compiler does not have any checks to ensure that doing this will not significantly increase the length of our code. In this way, we have made a tradeoff aiming for a faster runtime and giving up any space in memory we may have saved by not copying over the function every time it is called.
 
-We heavily used plyj to convert Java code into an AST. \href{https://github.com/musiKk/plyj}{Plyj} is a
+We heavily used plyj to convert Java code into an AST. [Plyj](https://github.com/musiKk/plyj) is a
 
 ### C to Assembly Compiler
 
 Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU.
 
-ALLISON WILL FINISH
 
 ## Sources
 
