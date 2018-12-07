@@ -6,6 +6,7 @@ With a interest in the processes surrounding executions of CPU instructions, we 
 
 First, we learned about the stages of compilation. We learned that a compiler is a tool that transforms source code from a higher level language to a generally lower level target language. Because we had 4 team members, we decided we would split the compilation process into a 2 step pipeline. The first compiler would transform code from Java to C and the second compiler would transform code from C to assembly. We also wanted to focus on the optimization step of compilation so we could see how the compiler works to make our code more efficient for our specific CPU architecture. We decided we would focus on the optimization step for our Java to C compiler because this compiler is higher level and thinking about the optimization at this level allows us to tie the work we are doing with this compiler into some of the things we learned about in computer architecture this semester.
 
+<div style="text-align:center"><img src ="overview.png" /></div>
 ![What is a Compiler?](overview.png)
 
 ## Compilation
