@@ -1,0 +1,12 @@
+Minju - Add contents to report / final presentation for measuring performance in software level and try to compare the performance in between two compilers
+	take a look at GCC
+
+Camille - add to report/presentation:c to assmebly specific optimizations 
+Allison - add about implementation to report and about AST to presentation
+
+Paper structure:
+- Generally explain how compiler works
+
+TODO:
+- Ask ben about the powerpoint structure
+- Compare MIPS assembly and x86 assembly

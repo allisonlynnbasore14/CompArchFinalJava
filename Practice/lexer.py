@@ -44,6 +44,9 @@ def t_NUMBER(t):
 	t.value = int(t.value)
 	return t 
 
+# create a list of lookup table
+
+
 def t_ID(t):
 	r'[a-zA-Z_][a-zA-Z_0-9]*'
 	t.type = reserved.get(t.value,'ID')	#check for reserved words
@@ -54,6 +57,8 @@ def t_ID(t):
 def t_newline(t):
 	r'\n+'
 	t.lexer.lineno += len(t.value)
+
+
 
 # 5. String containing ignored characters (spaces and tabs)
 t_ignore = ' \t, \n, \r'
