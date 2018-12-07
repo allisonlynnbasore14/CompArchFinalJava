@@ -6,7 +6,7 @@ With a interest in the processes surrounding executions of CPU instructions, we 
 
 First, we learned about the stages of compilation. We learned that a compiler is a tool that transforms source code from a higher level language to a generally lower level target language. Because we had 4 team members, we decided we would split the compilation process into a 2 step pipeline. The first compiler would transform code from Java to C and the second compiler would transform code from C to assembly. We also wanted to focus on the optimization step of compilation so we could see how the compiler works to make our code more efficient for our specific CPU architecture. We decided we would focus on the optimization step for our Java to C compiler because this compiler is higher level and thinking about the optimization at this level allows us to tie the work we are doing with this compiler into some of the things we learned about in computer architecture this semester.
 
-<div style="text-align:center"><img src ="overview.png" /></div>
+![What is a Compiler?](overview.png)
 
 ## Compilation
 
@@ -14,7 +14,7 @@ As we learned this semester, assembly code serves as a mapping of binary CPU ope
 
 The three stages of compilation are parsing, transformation, and code generation. Parsing is taking code and translating it into a more abstract representation of that same code. Transformation involves using the abstract representation of code from one language and making the necessary transformations and optimization to move it into a lower level programming language. Finally, code generation takes the transformed representation of the code and translates it into a new string of code in the target programming language.
 
-<div style="text-align:center"><img src ="flow.png" /></div>
+![Compilation Overview](flow.png)
 
 ### Parsing
 
@@ -60,7 +60,7 @@ for(int i = 0; i<N;i++){
 
 Here you have the same for loop key word, but the rest of the syntax is different and produce very different objects for the same end desired result. In the study of parsers, in an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
 
-<div style="text-align:center"><img src ="grams.jpg" /></div>
+![Grammar Rules](grams.jpg)
 
 The content of rules and particulars of each of these grammar types in the hierarchy is extensive but, even though they are extremely interesting, they are beyond the scope of this paper.
 
@@ -132,6 +132,8 @@ def sumnTR(n, a):
 Another one of the more basic techniques for optimization during compilation is interprocedural analysis. The goal of this process is to minimize load and store operations by keeping as many variables as possible in registers. One way to do this is to examine the code when a function is called and move subexpressions that are calculated inside a loop (and that do not change each time through) out of the loop so that they are only calculated and stored once. Another thing that can be done is to be sure to only save registers that are actually used by the function in question.
 
 One other optimization that compilers can perform that was particularly relevant to us in our understanding of computer architecture was instruction scheduling. This optimization happens after all other optimizations. It depends on both the instruction pipeline and how many instructions per cycle can be issued by the specific architecture. The main goal of an instruction scheduling optimization is to move things around such that we minimize the number of times an instruction is using an operand calculated by a load instruction immediately before it. This explains how the compiler is actually able to help our CPU avoid data hazards and minimize the need for forwarding.
+
+In theory, with all optimization technique implemented, we could make the computer work in parallel with hardware designed for serial computation. However, there are significant limitations. For loop unrolling, the number of iteration must be known before the loop is entered and this is not all possible cases. 
 
 Although we were not able to actually implement all or even most of these optimizations in our compiler, we were able to learn a lot about how compilers interact with the CPU and can make the code we write in higher level programming languages as efficient as possible.
 
