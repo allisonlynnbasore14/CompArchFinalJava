@@ -133,7 +133,7 @@ Another one of the more basic techniques for optimization during compilation is 
 
 One other optimization that compilers can perform that was particularly relevant to us in our understanding of computer architecture was instruction scheduling. This optimization happens after all other optimizations. It depends on both the instruction pipeline and how many instructions per cycle can be issued by the specific architecture. The main goal of an instruction scheduling optimization is to move things around such that we minimize the number of times an instruction is using an operand calculated by a load instruction immediately before it. This explains how the compiler is actually able to help our CPU avoid data hazards and minimize the need for forwarding.
 
-In theory, with all optimization techniques implemented, we could make the computer work in parallel with hardware designed for serial computation. However, there are significant limitations. For loop unrolling, the number of iterations must be known before the loop is entered and this is not possible in all cases. 
+In theory, with all optimization techniques implemented, we could make the computer work in parallel manner with hardware designed for serial computation. However, there are significant limitations. For loop unrolling, the number of iterations must be known before the loop is entered and this is not possible in all cases. Also, if there is any abnormal exit such as jump from inside of the loop to outside or return statement, such loop cannot be candidated for parallelism.
 
 Although we were not able to actually implement all or even most of these optimizations in our compiler, we were able to learn a lot about how compilers interact with the CPU and can make the code we write in higher level programming languages as efficient as possible.
 
@@ -174,7 +174,7 @@ Our translator implemented inline optimization. As a side effect, this design ma
 
 ### C to Assembly Compiler
 
-Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU.
+Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. **Using ply library once again, we attempted (fix) implement the C to Assembly compiler.** The compiling process is similar to high level language (Java) to a lower level language (C). The process incldues : parsing, transformation and code generation. During the code implementation, 
 
 
 ## Sources
@@ -184,3 +184,5 @@ Once we have made the transition from a high level language (Java) to a lower le
 [https://www.youtube.com/watch?v=Tar4WgAfMr4]([https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf])
 
 [https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques]([https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf])
+
+Blume, William, and Rudolf Eigenmann. "Performance analysis of parallelizing compilers on the Perfect Benchmarks programs." IEEE Transactions on Parallel & Distributed Systems 6 (1992): 643-656.
