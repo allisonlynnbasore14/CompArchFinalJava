@@ -166,7 +166,7 @@ public class ExampleMinNumber {
 
 }
 ```
-<div style="text-align:center"><img src ="ASTTree.jpg" /></div>
+<div style="text-align:center"><img src ="treePic.JPG" /></div>
 
 As previously mentioned, we focused on the basic functionality in MIPS assembly. Our target was to be able to compile a java function that requires jumps, stores, and basic operations. Therefore, our code translator a highly simplified version of a normal translator that would be able to handle the full grammar of java.
 
