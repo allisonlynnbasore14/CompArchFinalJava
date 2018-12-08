@@ -1,6 +1,6 @@
 # Compiler Optimization: A Study of the Pipeline from Programming Languages to Assembly
 
-With a interest in the processes surrounding executions of CPU instructions, we chose to investigate the transformation of programming languages to the basic instructions for CPU control. With research, we found ways to optimize code while compiling. Following this, we were able to investigate implementation of several optimization strategies. Via a combination of research and implementation, we have developed a deep understanding of the pipeline from high level programming languages to the binary commands that run a computer.
+With a interest in the processes surrounding executions of CPU instructions, we chose to investigate the transformation of programming languages to the basic instructions for CPU control. Via our learning in this course, we have a particular interest in optimizing to MIPS assembly language. In previous labs for this course, we brought a single cycle CPU design to an FPGA board. For that project, we concentrated on basic functionality: add, jump, branch, store etc. Now with this final project, we are able to connect the software down to FPGA implementation of basic functions. With research, we found ways to optimize code while compiling. Following this, we were able to investigate implementation of several optimization strategies. Via a combination of research and implementation, we have developed a deep understanding of the pipeline from high level programming languages to the binary commands that run a computer.
 
 ## Overview
 
@@ -146,7 +146,31 @@ Coming into this project, we recognized that building 2 full scale compilers was
 
 For our Java to C compiler, we decided we wanted to focus mostly on the transformation stage of compilation. We did not want to spend much time on parsing and code generation for two languages that are both higher level than we really learned about in computer architecture this semester. For this reason, we found Python libraries that were able to do these steps for us. One Python library performed parsing for us by taking the Java code and translating it into an abstract syntax tree. Another library was able to do code generation by taking a C abstract syntax tree and translating it into C code. We focused on the implementation for the transformation step. During this step, we took the Java abstract syntax tree and transformed it into a C abstract syntax tree. We also wanted to focus on adding some optimizations during this step so that our code would perform better when loaded onto a CPU. The main optimization that we implemented was function inlining. We did this by taking any functions in our Java code and inlining them into our main function in our new abstract syntax tree. Our compiler does not have any checks to ensure that doing this will not significantly increase the length of our code. In this way, we have made a tradeoff aiming for a faster runtime and giving up any space in memory we may have saved by not copying over the function every time it is called.
 
-We heavily used plyj to convert Java code into an AST. [Plyj](https://github.com/musiKk/plyj) is a
+We heavily used plyj to convert Java code into an AST. Plyj is a version of Ply that parses java code. Ply is a lexical/parsing (Lex/Yacc) tool written in Pyton.  Some of the features in ply include standard lexical analysis and parsing features: error checking, AST tree generation, language-specific capability.
+
+Given the following java code the output of using plyj is the following tree:
+
+```
+public class ExampleMinNumber {
+
+  public void add(){
+    int a = 20;
+    int b = 4;
+    int c = a+b;
+  }
+
+   public static void main(String[] args) {
+      add();
+
+   }
+
+}
+```
+<div style="text-align:center"><img src ="ASTTree.jpg" /></div>
+
+As previously mentioned, we focused on the basic functionality in MIPS assembly. Our target was to be able to compile a java function that requires jumps, stores, and basic operations. Therefore, our code translator a highly simplified version of a normal translator that would be able to handle the full grammar of java.
+
+Our translator implemented inline optimization. As a side effect, this design made the translator simpler since we only had to create and store the main function. This meant we did not have to organize multiple function assignment, definitions, parameters etc. we could replace parameters with variable values and combine all variables and methods. After scanning the tree for the variables and operations, we build up new C based tree with the pyparser module. This program was made to complete the code generation step for us. This created are target C code. How the ply parser and the pyparser code generator works are more explained in the beginning section of this report.
 
 ### C to Assembly Compiler
 
