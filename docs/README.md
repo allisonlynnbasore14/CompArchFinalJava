@@ -36,12 +36,9 @@ In the above tokenization example the ID sections represent variables in the ori
 
 This process can be broken down into two parts: scanning the code and grouping the token based on the code content. Scanning largely consists of ignoring comments and removing white space, essentially stripping the code down to the key information. Next the analyzer finds groups of tokens and their children values.
 
-TODO (Vicky?) - Fix this paragraph
-One approach is making a scanner and analyzer is to have a series of states that identify the meaning of a piece of code similar to the finite state machines we learned about this semester. For example, when scanning, you might be in a \textit{commentIgnore} state. For analyzing you might be in a \textit{WhileStatement} state. These may be tokens themselves or simple states of the code to be used for organization of the AST. These states can be as high level as \textit{MainFunc} state or as low level as \textit{minusSign} state. (An organization of the states is often presented as a table where states are crossed with the current characters being considered make up the rows -> This sentence makes no sense - NEED TO FIX). For example, if you were in the for loop state your next input tokens would be: BEGPARAN, (CONST, a), LESSTHAN, (CONST, b), ENDPARAN and your input characters would be ( a < b ). The for token would be what sets the code into the for loop state.
+One approach is making a scanner and analyzer is to have a series of states that identify the meaning of a piece of code similar to the finite state machines we learned about this semester. For example, when scanning, you might be in a *commentIgnore* state or a *WhileStatement* state. These may be tokens themselves or simple states of the code to be used for organization of the AST. These states can be as high level as *MainFunc* state or as low level as *minusSign* state. The states are often organized in a table where columns represent the different states and rows represent characters in the code. A cell in the table is marked as true if the corresponding character represents the corresponding state. For example, in Java, if the character was "//" and the state was *commentIgnore* state, then that entry in the table would be true.
 
-INSERT MORE APPROACHES
-
-Once lexical analysis has been able to identify and group code pieces, the second phase of parsing beings where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like \textit{Recursive Descent Parsing} are simple yet require backtracking. Others are more complicated but are able to generate a tree with a single pass through.
+Once lexical analysis has been able to identify and group code pieces, the second phase of parsing beings where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like *Recursive Descent Parsing* are simple yet require backtracking. Others are more complicated but are able to generate a tree with a single pass through.
 
 Programming languages, like natural languages, have grammar. Even through programming languages are significantly more systematic they still require careful parsing of syntax rules that interpret meaning. For example, in the case of Java, a simple for each loop versus a regular for loop:
 
@@ -174,7 +171,7 @@ Our translator implemented inline optimization. As a side effect, this design ma
 
 ### C to Assembly Compiler
 
-Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. **Using ply library once again, we attempted (fix) implement the C to Assembly compiler.** The compiling process is similar to high level language (Java) to a lower level language (C). The process incldues : parsing, transformation and code generation. During the code implementation, 
+Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. **Using ply library once again, we attempted (fix) implement the C to Assembly compiler.** The compiling process is similar to high level language (Java) to a lower level language (C). The process incldues : parsing, transformation and code generation. During the code implementation,
 
 
 ## Sources
