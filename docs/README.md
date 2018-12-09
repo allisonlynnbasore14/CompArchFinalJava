@@ -171,15 +171,15 @@ Our translator implemented inline optimization. As a side effect, this design ma
 
 ### C to Assembly Compiler
 
-Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. **Using ply library once again, we attempted (fix) implement the C to Assembly compiler.** The compiling process is similar to high level language (Java) to a lower level language (C). The process incldues : parsing, transformation and code generation. During the code implementation,
+Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. **Using ply library once again, we attempted to implement the C to Assembly compiler.** The compiling process is similar to high level language (Java) to a lower level language (C), except the variable assignment. The machine has limited number of registers therefore we cannot simply assign a value to
 
 
 ## Sources
 
 [https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf](https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf)
 
-[https://www.youtube.com/watch?v=Tar4WgAfMr4]([https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf])
+[https://www.youtube.com/watch?v=Tar4WgAfMr4]([https://www.youtube.com/watch?v=Tar4WgAfMr4])
 
-[https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques]([https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf])
+[https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques]([https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques])
 
 Blume, William, and Rudolf Eigenmann. "Performance analysis of parallelizing compilers on the Perfect Benchmarks programs." IEEE Transactions on Parallel & Distributed Systems 6 (1992): 643-656.
