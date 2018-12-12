@@ -18,7 +18,7 @@ The three stages of compilation are parsing, transformation, and code generation
 
 ### Parsing
 
-Parsing is the process of converting files of a certain type to a tokenized Abstract Syntax Tree. An abstract Syntax tree is simply a tree data structure that nests elements of the code using keyword tokens as branches. The important part here is that the essence and meaning of the code must be reflected in the syntax tree. No information can be lost when parsing. This is where Lexical Analysis comes in. Lexical Analysis converts the important information to a series of tokens. Tokens can be keywords taken from the code, operation signs, numerical constants, or even variable names. Tokens vary from parser to parser and often are written with the overall compiler design in mind. An example tokenization is given below:
+Parsing is the process of converting files of a certain type to a tokenized Abstract Syntax Tree. An Abstract Syntax Tree is simply a tree data structure that nests elements of the code using keyword tokens as branches. The important part here is that the essence and meaning of the code must be reflected in the syntax tree. No information can be lost when parsing. This is where Lexical Analysis comes in. Lexical Analysis converts the important information to a series of tokens. Tokens can be keywords taken from the code, operation signs, numerical constants, or even variable names. Tokens vary from parser to parser and often are written with the overall compiler design in mind. An example tokenization is given below:
 
 ```
 // Java Code
@@ -38,7 +38,7 @@ This process can be broken down into two parts: scanning the code and grouping t
 
 One approach is making a scanner and analyzer is to have a series of states that identify the meaning of a piece of code similar to the finite state machines we learned about this semester. For example, when scanning, you might be in a *commentIgnore* state or a *WhileStatement* state. These may be tokens themselves or simple states of the code to be used for organization of the AST. These states can be as high level as *MainFunc* state or as low level as *minusSign* state. The states are often organized in a table where columns represent the different states and rows represent characters in the code. A cell in the table is marked as true if the corresponding character represents the corresponding state. For example, in Java, if the character was "//" and the state was *commentIgnore* state, then that entry in the table would be true.
 
-Once lexical analysis has been able to identify and group code pieces, the second phase of parsing beings where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like *Recursive Descent Parsing* are simple yet require backtracking. Others are more complicated but are able to generate a tree with a single pass through.
+Once lexical analysis has been able to identify and group code pieces, the second phase of parsing begins where we are making the AST. Likewise with lexical analysis, there are several potential strategies. Some like *Recursive Descent Parsing* are simple yet require backtracking. Others are more complicated but are able to generate a tree with a single pass through.
 
 Programming languages, like natural languages, have grammar. Even through programming languages are significantly more systematic they still require careful parsing of syntax rules that interpret meaning. For example, in the case of Java, a simple for each loop versus a regular for loop:
 
