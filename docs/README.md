@@ -62,7 +62,7 @@ Here you have the same for loop key word, but the rest of the syntax is differen
 
 The content of rules and particulars of each of these grammar types in the hierarchy is extensive but, even though they are extremely interesting, they are beyond the scope of this paper.
 
-Parsing techniques like \textit{Recursive Descent Parsing} use grammar rules to trigger certain recursive paths.
+Parsing techniques like *Recursive Descent Parsing* use grammar rules to trigger certain recursive paths.
 
 In terms of language, you can say that tokens are like the alphabet of programming, the grammar is the syntax, and code can be formed by joining the alphabet according to the grammar rules. For example, in English the sentence "I have a dog named Roger." Makes sense because it has the proper word types in the proper order. Similarly,
 `for(int i = 0; i< 10;i++){
