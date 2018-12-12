@@ -94,7 +94,7 @@ Mechanically, transformation works by parsing the source code's AST and simultan
 
 ### Code Generation
 
-In large part, code generation is follows the same rules and processes of parsing but inverted. Additional rules must be used to allow for optimized use of the target language. For example, with machine language, you have to decide which registers to use and when. For every leaf of the AST, we need to decide what is corresponds to in the target language, what register/memory allocation is needed, and where to put it in the final code.
+In large part, code generation follows the same rules and processes of parsing but inverted. Additional rules must be used to allow for optimized code written in the target language. For example, with machine language, you have to decide which registers to use and when. For every leaf of the AST, we need to decide what it corresponds to in the target language, what register/memory allocation is needed, and where to put it in the final code.
 
 During code generation, the compiler iterates over every element in the transformed abstract syntax tree and converts it into code in the target programming language. The output at the end of code generation is a string of (ideally optimized) code written in the target programming language.
 
