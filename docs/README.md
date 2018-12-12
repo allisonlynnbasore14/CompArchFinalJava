@@ -175,7 +175,11 @@ Once we have made the transition from a high level language (Java) to a lower le
 
 For a global variable, it exists only once in the program and compiler reserves one memory area of 4 bytes in a data array with a fixed address. Then, in order to execute a compiled program, variable's address is needed as static data memory. Then, the compiler remembers the address and operate load word or write instruction for saved address in static data memory. When the number of variables of given program exceeds the number of available registers, "Spilling" occurs. Then, spilled variable's addresses are replaced with "store" to a static data memory and called by loads, which reduces the memory traffic. Some compilers such as x86 compiler offers register-to-register spilling. In other words, they can store and load the general-purpose register's instruction to SIMD, registers from differernt class.
 
-If we only focuses on optimization process, it will cause much higher consumption of hardware resources such as registers which are expensive. As computer architects who both care about performance and resource usage, we should practice finding balance in between them.
+We were not able to fully complete the C to Assembly compiler, but we did spend a lot of time researching ways that we could optimize it to use the least number of registers and avoid data hazards. We also fully implemented the lexing analysis step for this compiler.
+
+## Conclusion
+
+If we only focus on the optimization process, it will cause much higher consumption of hardware resources such as registers which is expensive. As computer architects who both care about performance and resource usage, we should practice finding balance between them.
 
 
 
