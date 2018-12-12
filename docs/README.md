@@ -171,7 +171,12 @@ Our translator implemented inline optimization. As a side effect, this design ma
 
 ### C to Assembly Compiler
 
-Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. **Using ply library once again, we attempted to implement the C to Assembly compiler.** The compiling process is similar to high level language (Java) to a lower level language (C), except the variable assignment. The machine has limited number of registers therefore we cannot simply assign a value to
+Once we have made the transition from a high level language (Java) to a lower level language (C), we can again transition to the basic assembly code that will instruct our CPU. Using ply library once again, we attempted to implement the C to Assembly compiler. The compiling process is similar to high level language (Java) to a lower level language (C), except the variable assignment. The machine has limited number of registers therefore we cannot simply load a value to register. For our implementation, we hardcoded which variables go to which register since we have known source code of C. However, compiler developers do not know what users will input except input language, so they have to develop some way of dealing with memories. 
+
+For a global variable, it exists only once in the program and compiler reserves one memory area of 4 bytes in a data array with a fixed address. Then, in order to execute a compiled program, variable's address is needed as static data memory. Then, the compiler remembers the address and operate load word or write instruction for saved address in static data memory. When the number of variables of given program exceeds the number of available registers, "Spilling" occurs. Then, spilled variable's addresses are replaced with "store" to a static data memory and called by loads, which reduces the memory traffic. Some compilers such as x86 compiler offers register-to-register spilling. In other words, they can store and load the general-purpose register's instruction to SIMD, registers from differernt class.
+
+If we only focuses on optimization process, it will cause much higher consumption of hardware resources such as registers which are expensive. As computer architects who both care about performance and resource usage, we should practice finding balance in between them. 
+
 
 
 ## Sources
@@ -181,5 +186,7 @@ Once we have made the transition from a high level language (Java) to a lower le
 [https://www.youtube.com/watch?v=Tar4WgAfMr4]([https://www.youtube.com/watch?v=Tar4WgAfMr4])
 
 [https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques]([https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques])
+
+[https://stackoverflow.com/questions/30512879/register-allocation-in-compilers]([https://stackoverflow.com/questions/30512879/register-allocation-in-compilers])
 
 Blume, William, and Rudolf Eigenmann. "Performance analysis of parallelizing compilers on the Perfect Benchmarks programs." IEEE Transactions on Parallel & Distributed Systems 6 (1992): 643-656.
