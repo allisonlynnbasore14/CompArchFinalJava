@@ -56,7 +56,7 @@ for(int i = 0; i<N;i++){
 ```
 
 
-Here you have the same for loop key word, but the rest of the syntax is different and produces very different objects for the same end desired result. In an attempt to organize grammar, a hierarchical structure was made called \textit{Chomsky Hierarchies of Grammars}. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
+Here you have the same for loop key word, but the rest of the syntax is different and produces very different objects for the same end desired result. In an attempt to organize grammar, a hierarchical structure was made called *Chomsky Hierarchies of Grammars*. It consists of 4-5 levels that break down grammar rules into trees. Each level represent different rules for how grammar rules can be made.
 
 <div style="text-align:center"><img src ="grams.jpg" /></div>
 
