@@ -183,10 +183,10 @@ If we only focuses on optimization process, it will cause much higher consumptio
 
 [https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf](https://dickgrune.com/Books/PTAPG_1st_Edition/BookBody.pdf)
 
-[https://www.youtube.com/watch?v=Tar4WgAfMr4]([https://www.youtube.com/watch?v=Tar4WgAfMr4])
+[https://www.youtube.com/watch?v=Tar4WgAfMr4](https://www.youtube.com/watch?v=Tar4WgAfMr4)
 
-[https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques]([https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques])
+[https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques](https://www.embedded.com/electronics-products/electronic-product-reviews/embedded-tools/4086427/Advanced-Compiler-Optimization-Techniques)
 
-[https://stackoverflow.com/questions/30512879/register-allocation-in-compilers]([https://stackoverflow.com/questions/30512879/register-allocation-in-compilers])
+[https://stackoverflow.com/questions/30512879/register-allocation-in-compilers](https://stackoverflow.com/questions/30512879/register-allocation-in-compilers)
 
 Blume, William, and Rudolf Eigenmann. "Performance analysis of parallelizing compilers on the Perfect Benchmarks programs." IEEE Transactions on Parallel & Distributed Systems 6 (1992): 643-656.
