@@ -6,13 +6,13 @@ Check out our presentation for a summary of our learning and implementation:
 
 To run our Java compiler:
 
-Navigate to the pycparserReal folder\s
+Navigate to the pycparserReal folder\s\s
 
 Run 
 ```
 sudo python setup.py install
 ```
-Navigate to the examples folder\s
+Navigate to the examples folder\s\s
 Run
 ```
 sudo python setup2.py install
